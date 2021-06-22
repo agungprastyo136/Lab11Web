@@ -1,4 +1,4 @@
-# Praktikum ke-11
+# Praktikum ke-11 Dan Praktikum ke-12
 
 * Sebelum Memulai praktikum anda harus mengaktifkan (Start) terlebih dahulu Apache dan MySQL pada Xampp . Setelah selesai maka jangan Lupa membuka text editor misalnya yang saya gunakan yaitu : Sublime text
 * Nah kali ini berbeda dengan Praktikum yang lainnya kali ini kita praktikum tentang PHP Framework, yaitu pertama-tama Buka
@@ -218,5 +218,209 @@ lab4_layout. Kita akan gunakan layout yang pernah dibuat pada praktikum 4.
 
 
 
+
+
+
+# Praktikum ke-12 (Lanjutan dari Praktikum ke-11)
+
+# Membuat Database
+
+* Pertama-tama buatlah database dan juga tabel pada `http://localhost/phpmyadmin/` sebagai contoh databasenya `lab_ci4`
+dan tabelenya `artikel` .
+
+![StrukturTable](https://user-images.githubusercontent.com/56245855/122969363-bfc80f00-d3b6-11eb-9b50-da6f81adcadf.PNG)
+
+
+* Kemudian Konfigurasi untuk menghubungkan database server, pada file `.env` ,  dibawah ini adalah konfigurasi database yang belum di ubah.
+
+
+![configurasiDatabase](https://user-images.githubusercontent.com/56245855/122969828-50065400-d3b7-11eb-8237-7f5ad5d9111f.PNG)
+
+
+
+![ubahconfigDatabase](https://user-images.githubusercontent.com/56245855/122970001-817f1f80-d3b7-11eb-9f25-b2e9e8c39f05.PNG)
+
+
+
+* Yang di ubah adalah `#` , kemudian pada `database = lab_ci4` ( database yang tadi dibuat di `http://localhost/phpmyadmin/`)
+kemudian password pada konfigurasi database kita hilangkan kemudian simpan.
+
+
+
+# Membuat Model
+
+* Kemudian membuat Model untuk memproses data Artikel, buatlah file pada direktori app/Models dengan nama ArtikelModel.php
+
+
+![6_ST](https://user-images.githubusercontent.com/56245855/122971180-f737bb00-d3b8-11eb-9f61-3bf0093e54b9.PNG)
+
+
+
+# Membuat Controller
+
+* Membuat file controller baru dengan nama Artikel.php pada direktori app/Controllers, kemudian isi file tersebut seperti ini :
+
+
+![7_ST](https://user-images.githubusercontent.com/56245855/122971729-8d6be100-d3b9-11eb-983a-606c9b947f81.PNG)
+
+
+
+# Membuat View 
+
+* Buatlah folder baru dalam direktori view dengan nama "artikel" dan membuat file baru dengan nama "index.php", kemudian isi file tersebut seperti ini :
+
+
+![8_ST](https://user-images.githubusercontent.com/56245855/122972195-13882780-d3ba-11eb-9096-a1fed0392b85.PNG)
+
+
+* Buka browser kembali, dengan mengakses url `http://localhost:8080/artikel` maka akan muncul seperti ini :
+
+
+![belumadaData_Artikel](https://user-images.githubusercontent.com/56245855/122972905-d83a2880-d3ba-11eb-89e8-84295b6b219e.PNG)
+
+
+* belum ada data yang muncul, Kemudian coba tambahkan beberapa data pada database agar dapat ditampilkan datanya.
+
+
+![menambahkanData_Database](https://user-images.githubusercontent.com/56245855/122973563-9362c180-d3bb-11eb-8923-a21dda15048e.PNG)
+
+
+
+* Refresh kembali browser `http://localhost:8080/artikel` dan lihat perubahannya :
+
+
+![sudahadaData](https://user-images.githubusercontent.com/56245855/122973774-cc9b3180-d3bb-11eb-9435-130f3f84b293.PNG)
+
+
+
+# Membuat Tampilan Detail Artikel
+
+* Tampilan pada saat judul berita di klik maka akan diarahkan ke halaman yang berbeda. Tambahkan fungsi baru pada Controller Artikel dengan nama view(), Kemudian masukan method berikut kedalam controller artikel.php :
+
+
+![9_ViewST](https://user-images.githubusercontent.com/56245855/122974417-7b3f7200-d3bc-11eb-9707-6bc48fd58fb0.PNG)
+
+
+
+# Membuat View Detail
+
+* Buat view baru untuk halaman detail dengan nama app/views/artikel/detail.php.
+
+
+![10_detailST](https://user-images.githubusercontent.com/56245855/122974826-f143d900-d3bc-11eb-9e69-6181c6c42d1a.PNG)
+
+
+
+# Membuat Routing untuk artikel detail
+
+* Buka Kembali file app/config/Routes.php, kemudian tambahkan routing untuk artikel detail.
+
+
+![11_routesST](https://user-images.githubusercontent.com/56245855/122975234-58618d80-d3bd-11eb-8758-3331fd99957f.PNG)
+
+
+* Ketika meng-klik sebuah artikel berita Maka hasilnya seperti ini :
+
+
+![artikel_pertama](https://user-images.githubusercontent.com/56245855/122975411-834be180-d3bd-11eb-9b12-da093dbf02b8.PNG)
+
+
+![artikel_kedua](https://user-images.githubusercontent.com/56245855/122975455-8e9f0d00-d3bd-11eb-931a-b73447a36a60.PNG)
+
+
+
+# Membuat Menu Admin
+
+* Menu admin disini untuk memproses CRUD data artikel. tambahkan method baru pada Controller Artikel dengan nama admin_index(). 
+
+
+![12_ST](https://user-images.githubusercontent.com/56245855/122976004-200e7f00-d3be-11eb-9902-dac0a37b340b.PNG)
+
+
+* Selanjutnya buat file pada view untuk tampilan admin dengan nama admin_index.php
+
+
+![13_adminIndexST 1](https://user-images.githubusercontent.com/56245855/122976401-7ed3f880-d3be-11eb-9682-88fbb633738d.PNG)
+
+
+![13_adminindexST 2](https://user-images.githubusercontent.com/56245855/122976476-96ab7c80-d3be-11eb-89e8-9552ca7c9858.PNG)
+
+
+* Kemudian tambahkan routing untuk menu admin seperti berikut:
+
+
+![14_routesAdminST](https://user-images.githubusercontent.com/56245855/122976560-b17df100-d3be-11eb-8299-ae5ed55d8ebb.PNG)
+
+
+* Kemudian buka browser `localhost:8080/admin/artikel.`
+
+
+![halamanAdmin](https://user-images.githubusercontent.com/56245855/122976879-0f123d80-d3bf-11eb-8c7d-990e8f516ff3.PNG)
+
+
+
+# Menambah Data Artikel
+
+* Tambahkan fungsi/method baru pada Controller Artikel dengan nama add(). 
+
+
+![15_ST](https://user-images.githubusercontent.com/56245855/122977390-8b0c8580-d3bf-11eb-8470-448acd50e9d2.PNG)
+
+
+* Kemudian buat sebuah file pada folder view untuk form tambah dengan nama form_add.php
+
+
+![16_formaddST](https://user-images.githubusercontent.com/56245855/122977597-cc9d3080-d3bf-11eb-9982-2a1cf2f90657.PNG)
+
+
+* Maka Outputnya : 
+
+
+![tambahArtikel](https://user-images.githubusercontent.com/56245855/122977713-ecccef80-d3bf-11eb-9ed1-81aed3c08e4b.PNG)
+
+
+
+# Mengubah Data
+
+* Tambahkan fungsi/method baru pada Controller Artikel dengan nama edit().
+
+
+![17_ST](https://user-images.githubusercontent.com/56245855/122978143-5e0ca280-d3c0-11eb-8906-4b337625f3de.PNG)
+
+
+* Kemudian buat file pada folder view untuk form ubah dengan nama form_edit.php
+
+
+![18_formaddST](https://user-images.githubusercontent.com/56245855/122978262-85fc0600-d3c0-11eb-9722-a2b47caa47d3.PNG)
+
+
+* Maka Outputnya :
+
+
+![EditArtikel](https://user-images.githubusercontent.com/56245855/122978461-bb085880-d3c0-11eb-87c1-70981b24f4ae.PNG)
+
+
+![halamanArtkelUbah](https://user-images.githubusercontent.com/56245855/122978529-cf4c5580-d3c0-11eb-8fe3-1ce50ba8f373.PNG)
+
+
+
+# Menghapus Data
+
+* Tambahkan fungsi/method baru pada Controller Artikel dengan nama delete().
+
+
+![19_ST](https://user-images.githubusercontent.com/56245855/122978628-eab76080-d3c0-11eb-8014-fb04c6e71b0f.PNG)
+
+
+* Jika ingin Menghapus sebuah artikel Klik OK
+
+
+![hapusArtikel](https://user-images.githubusercontent.com/56245855/122978789-120e2d80-d3c1-11eb-9ca6-a75a8932dae3.PNG)
+
+
+
+
+
+                      # Sekian, Trimakasih
 
 
