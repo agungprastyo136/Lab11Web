@@ -1,4 +1,4 @@
-# Praktikum ke-11 Dan Praktikum ke-12
+# Praktikum ke-11, Praktikum ke-12, Praktikum ke-13
 
 * Sebelum Memulai praktikum anda harus mengaktifkan (Start) terlebih dahulu Apache dan MySQL pada Xampp . Setelah selesai maka jangan Lupa membuka text editor misalnya yang saya gunakan yaitu : Sublime text
 * Nah kali ini berbeda dengan Praktikum yang lainnya kali ini kita praktikum tentang PHP Framework, yaitu pertama-tama Buka
@@ -418,6 +418,111 @@ kemudian password pada konfigurasi database kita hilangkan kemudian simpan.
 ![hapusArtikel](https://user-images.githubusercontent.com/56245855/122978789-120e2d80-d3c1-11eb-9ca6-a75a8932dae3.PNG)
 
 
+
+
+
+
+# Praktikum ke-13 (Lanjutan dari praktikum 11 dan 12)
+
+# Membuat Database
+
+* Pertama-tama buatlah tabel pada `http://localhost/phpmyadmin/` pada database `lab_ci4`
+dengan nama tabel `user`.
+
+
+![tbuser](https://user-images.githubusercontent.com/56245855/123759372-0901ec80-d8ea-11eb-8ef9-6c83688af50a.PNG)
+
+
+
+# Membuat Model User
+
+* buatlah file baru pada direktori `app/Models` dengan nama UserModel.php, Model untuk memproses data Login.
+
+
+![usermodel](https://user-images.githubusercontent.com/56245855/123759940-96ddd780-d8ea-11eb-8eb5-8b7858602a8d.PNG)
+
+
+
+# Membuat controller user
+
+* Buat Controller baru dengan nama `User.php` pada direktori `app/Controllers`. Kemudian tambahkan method index() untuk menampilkan daftar user, dan method login() untuk proses login.
+
+
+![user](https://user-images.githubusercontent.com/56245855/123760374-fc31c880-d8ea-11eb-9c88-70ece7b50421.PNG)
+
+
+![user2](https://user-images.githubusercontent.com/56245855/123760496-18ce0080-d8eb-11eb-9660-af4343de7cfe.PNG)
+
+
+
+# Membuat View Login
+
+* Buat direktori baru dengan nama user pada direktori `app/views,` kemudian buat file baru dengan nama login.php.
+
+
+![login](https://user-images.githubusercontent.com/56245855/123760633-3f8c3700-d8eb-11eb-9d4a-b91652529262.PNG)
+
+
+
+# Membuat Database Seeder
+
+* Database seeder digunakan untuk membuat data dummy. Untuk keperluan ujicoba modul login, kita perlu memasukkan data user dan password kedaalam database. Untuk itu buat database seeder untuk tabel user. Buka CLI, kemudian tulis perintah berikut:     `php spark make:seeder UserSeeder`
+
+
+![Cli_1](https://user-images.githubusercontent.com/56245855/123760898-795d3d80-d8eb-11eb-8882-5519c66e7bec.PNG)
+
+
+*Selanjutnya, buka file `UserSeeder.php` yang berada di lokasi direktori `/app/Database/Seeds/UserSeeder.php` kemudian isi dengan kode berikut:   
+
+
+![userseder](https://user-images.githubusercontent.com/56245855/123761105-b295ad80-d8eb-11eb-873e-4e0c5814b821.PNG)
+
+
+* Selanjutnya buka kembali CLI dan ketik perintah berikut:    `php spark db:seed UserSeeder`
+
+
+![cliseder](https://user-images.githubusercontent.com/56245855/123761335-ee307780-d8eb-11eb-9200-b29bac107b04.PNG)
+
+
+
+* Maka hasilnya dari `http://localhost:8080/user/login`
+
+
+![TampilanHalamanLogin](https://user-images.githubusercontent.com/56245855/123761642-35b70380-d8ec-11eb-99f8-5d9bdbeb6448.PNG)
+
+
+
+# Menambahkan Auth Filter
+
+* Kemudian buatlaht filer untuk halaman admin. Buat file baru dengan nama `Auth.php` pada direktori `app/Filters`
+
+
+![authphp](https://user-images.githubusercontent.com/56245855/123762041-96ded700-d8ec-11eb-845e-edb354e93a96.PNG)
+
+
+* Selanjutnya buka file `app/Config/Filters.php` tambahkan kode berikut:   `'auth' => \App\Filters\Auth::class,`
+
+
+![tambahkan auth pada filter](https://user-images.githubusercontent.com/56245855/123762298-e02f2680-d8ec-11eb-80d1-140b52fb4a73.PNG)
+
+
+* Selanjutnya buka file` app/Config/Routes.php` tambahkan `['filter' => 'auth'],`
+
+
+![tambahkan filter pada routes](https://user-images.githubusercontent.com/56245855/123762627-313f1a80-d8ed-11eb-886e-9800416b75f2.PNG)
+
+
+* Sebelum mengakses `http://localhost:8080/admin/artikel` buat file `login.ccs` untuk merubah tampilan halaman login.
+
+
+![weblogin](https://user-images.githubusercontent.com/56245855/123762889-6f3c3e80-d8ed-11eb-9cb9-68ed141d4e58.PNG)
+
+
+* Fungsi Logout
+Tambahkan method logout pada Controller User seperti berikut:
+
+
+![logout](https://user-images.githubusercontent.com/56245855/123763187-baeee800-d8ed-11eb-8caa-0b83d9732038.PNG)
 
 
 
