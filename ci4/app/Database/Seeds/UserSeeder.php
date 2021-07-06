@@ -8,11 +8,12 @@ class UserSeeder extends Seeder
 {
 	public function run()
 	{
+		//ini data login//
 		$model = model('UserModel');
 		$model->insert([
-			'username' => 'agung',
-			'useremail' => 'agungprastyo136@gmail.com',
-			'userpassword' => password_hash('agung', PASSWORD_DEFAULT),
+			'username' => 'rio',
+			'useremail' => 'rio123@gmail.com',
+			'userpassword' => password_hash('rio123', PASSWORD_DEFAULT),
 		]); 
 	}
 }

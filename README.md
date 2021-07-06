@@ -1,4 +1,4 @@
-# Praktikum ke-11, Praktikum ke-12, Praktikum ke-13
+# Praktikum ke-11, Praktikum ke-12, Praktikum ke-13, dan Praktikum ke-14.
 
 * Sebelum Memulai praktikum anda harus mengaktifkan (Start) terlebih dahulu Apache dan MySQL pada Xampp . Setelah selesai maka jangan Lupa membuka text editor misalnya yang saya gunakan yaitu : Sublime text
 * Nah kali ini berbeda dengan Praktikum yang lainnya kali ini kita praktikum tentang PHP Framework, yaitu pertama-tama Buka
@@ -523,6 +523,86 @@ Tambahkan method logout pada Controller User seperti berikut:
 
 
 ![logout](https://user-images.githubusercontent.com/56245855/123763187-baeee800-d8ed-11eb-8caa-0b83d9732038.PNG)
+
+
+
+
+# Praktikum ke-14 (Lanjutan dari praktikum ke-13)
+
+# Membuat Pagination, Membuat Pencarian data dan Upload Gambar
+
+* Pagination merupakan proses yang digunakan untuk membatasi tampilan yang panjang dari data yang banyak pada sebuah website. Fungsi pagination adalah memecah tampilan menjadi beberapa halaman tergantung banyaknya data yang akan ditampilkan pada setiap halaman.
+
+* Untuk membuat pagination, buka Kembali `Controller Artikel`, kemudian modifikasi kode pada method `admin_index`,
+`'artikel' => $model->paginate(10), #data dibatasi 10 record per-halaman 'pager' => $model->pager`,
+
+
+![1](https://user-images.githubusercontent.com/56245855/124596689-c5c8f000-de8c-11eb-98f8-fbcb55200bae.PNG)
+
+
+* Selanjutnya buka file `views/artikel/admin_index.php` dan tambahkan kode berikut dibawah deklarasi tabel data.
+`<?= $pager->links(); ?>`
+
+
+![1 2](https://user-images.githubusercontent.com/56245855/124597185-5a335280-de8d-11eb-89e0-a23f09475d3a.PNG)
+
+
+* Kemudian buka `localhost:8080/index.php/admin/artikel`
+
+
+![1web](https://user-images.githubusercontent.com/56245855/124597405-a7afbf80-de8d-11eb-8e27-d45461a51004.png)
+
+
+
+# Membuat sebuah pencarian data
+
+* Pencarian data digunakan untuk memfilter data. Untuk membuat pencarian data, buka kembali `Controller/Artikel`, pada method `admin_index` kemudian ubahlah beberapa codenya seperti berikut :
+`$q = $this->request->getVar('q') ?? '';`
+`'q' => $q,
+ 'artikel' => $model->like('judul', $q)->paginate(10),`
+
+
+![2](https://user-images.githubusercontent.com/56245855/124598100-7683bf00-de8e-11eb-80a2-be29913e30f4.PNG)
+
+
+* Buka kembali file `views/artikel/admin_index.php` dan tambahkan form pencarian sebelum deklarasi tabel .
+
+
+![2 2](https://user-images.githubusercontent.com/56245855/124598324-acc13e80-de8e-11eb-91d7-994f8459ca7d.PNG)
+
+
+* ubahlah link pager tadi menjadi seperti ini : 
+
+
+![2 3](https://user-images.githubusercontent.com/56245855/124598509-e72adb80-de8e-11eb-861b-6045e708b9f4.PNG)
+
+
+* Kemudian cek kembali perubahan setelah diberikan css yang ada di halaman  `localhost:8080/index.php/admin/artikel`
+
+
+![2web](https://user-images.githubusercontent.com/56245855/124598768-2ce7a400-de8f-11eb-8454-a925cb854a4e.PNG)
+
+
+
+# Upload gambar
+
+* Menambahkan fungsi unggah gambar pada tambah artikel. Buka kembali `Controller/Artikel`, sesuaikan kode pada method add seperti berikut:
+
+
+![3](https://user-images.githubusercontent.com/56245855/124599177-9071d180-de8f-11eb-892b-6e57d085d9bb.PNG)
+
+
+* Kemudian pada file `views/artikel/form_add.php` tambahkan field input file, Dan sesuaikan tag form dengan menambahkan ecrypt type seperti ini :
+
+
+![3 2](https://user-images.githubusercontent.com/56245855/124599424-daf34e00-de8f-11eb-92ec-607a64ad9463.PNG)
+
+
+* maka hasil pengcode-an di atas akan seperti ini :
+
+
+![3Web](https://user-images.githubusercontent.com/56245855/124599786-3faea880-de90-11eb-8583-53f56e2d3f0f.PNG)
+
 
 
 
